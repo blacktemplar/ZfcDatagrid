@@ -4,7 +4,7 @@
  */
 namespace ZfcDatagrid\Renderer\TCPDF;
 
-use TCPDF;
+use ZfcDatagrid\Renderer\TCPDF\TCPDF;
 use Zend\Http\Headers;
 use Zend\Http\Response\Stream as ResponseStream;
 use ZfcDatagrid\Column\Style;
@@ -137,6 +137,10 @@ class Renderer extends AbstractExport
         return $response;
     }
 
+    protected function createTCPDF($orientation, $papersize) {
+      return new TCPDF($orientation, 'mm', $papersize);
+    }
+
     protected function initPdf()
     {
         $optionsRenderer = $this->getOptionsRenderer();
@@ -149,7 +153,8 @@ class Renderer extends AbstractExport
             $orientation = 'P';
         }
 
-        $pdf = new TCPDF($orientation, 'mm', $papersize);
+
+        $pdf = $this->createTCPDF($orientation, $papersize);
 
         $margins = $optionsRenderer['margins'];
         $pdf->SetMargins($margins['left'], $margins['top'], $margins['right']);
