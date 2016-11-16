@@ -4,7 +4,7 @@
  */
 namespace ZfcDatagrid\Renderer\TCPDF;
 
-use ZfcDatagrid\Renderer\TCPDF\TCPDF;
+use TCPDF;
 use Zend\Http\Headers;
 use Zend\Http\Response\Stream as ResponseStream;
 use ZfcDatagrid\Column\Style;
@@ -152,7 +152,6 @@ class Renderer extends AbstractExport
         } else {
             $orientation = 'P';
         }
-
 
         $pdf = $this->createTCPDF($orientation, $papersize);
 
